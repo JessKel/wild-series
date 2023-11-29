@@ -12,7 +12,7 @@ Class DefaultController extends AbstractController
     public function index(): Response
     {
         return $this->render('/index.html.twig', [
-            'message' => 'Bienvenue !',
+            'message' => 'Le top des séries du moment',
          ]);
     }
 }
