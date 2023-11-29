@@ -1,29 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding:0">
   <div class="container-fluid" style="background-color:#180844" style="padding:1rem">
     <a class="navbar-brand" href="/">            
-        <img src="{{ asset('build/images/logoWildseries.png') }}" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+        <img src="{{ asset('build/images/logoWildseries.png') }}" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
     </a>
     <div class="collapse navbar-collapse nav justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link active" style="color:#ffffff" aria-current="page" href="#">Accueil</a>
+        <li class="nav-item" style="padding-left:3rem">
+          <a class="nav-link active" style="color:#ffffff" aria-current="page" href="{{ path('app_index') }}">Accueil</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" style="padding-left:3rem">
           <a class="nav-link dropdown-toggle" style="color:#ffffff" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Catégories
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action/aventure</a></li>
-            <li><a class="dropdown-item" href="#">Comédie</a></li>
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Aventure</a></li>
+            <li><a class="dropdown-item" href="#">Animation</a></li>
             <li><a class="dropdown-item" href="#">Dramatique</a></li>
-            <li><a class="dropdown-item" href="#">Fantastique et science-fiction</a></li>
+            <li><a class="dropdown-item" href="#">Fantastique</a></li>
             <li><a class="dropdown-item" href="#">Historique</a></li>
+            <li><a class="dropdown-item" href="#">Horreur</a></li>
             <li><a class="dropdown-item" href="#">Jeunesse</a></li>
+            <li><a class="dropdown-item" href="#">SF</a></li>
+            <li><a class="dropdown-item" href="#">Sport</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Tous les genres</a></li>
+            <li><a class="dropdown-item" href="/category">Toutes les catégories</a></li>
           </ul>
         </li>
-                <li class="nav-item dropdown">
+        <li class="nav-item dropdown" style="padding-left:3rem">
           <a class="nav-link dropdown-toggle" style="color:#ffffff" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Acteurs
           </a>
@@ -36,10 +40,10 @@
             <li><a class="dropdown-item" href="#">Tous les acteurs/actrices</a></li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="padding-left:3rem">
           <a class="nav-link" style="color:#ffffff" href="#">Mes favoris</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" style="padding-left:3rem" >
           <a class="nav-link" style="color:#ffffff" href="#">Profil</a>
         </li>
       </ul>
