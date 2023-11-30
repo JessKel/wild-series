@@ -4,14 +4,34 @@
 
 {% block body %}
 <div class="container"> 
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{program.poster}}" alt="{{ program.title }} poster">
-        <div class="card-body">
-            <h1 class="card-title">{{ program.title }}</h1>
-            <p class="card-text">{{ program.synopsis }}</br>
-            Catégorie : {{ program.category.name }}</p>
-            <a href="{{ path('program_index') }}">Retour à la liste des programmes</a>
-        </div>
+    <div class="card mb-3" style="max-width:100vw;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img class="img-fluid rounded-start" src="{{ asset(program.poster) }}" alt="{{ program.title }} poster" style="height:100vh">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 class="card-title">{{ program.title }}</h1>
+                    <p class="card-text">
+                    Année : {{ program.year }}</br></br>
+                    Pays : {{ program.country }}</br></br>
+                    Synopsis : {{ program.synopsis }}</br></br>
+                    Catégorie : {{ program.category.name }}</br></br>
+                    {% if seasons is not empty %}
+                        Saisons :
+                        <ul>
+                            {% for season in seasons %}
+                                <a href="/program/{programId}/season/{seasonId}"><li>Saison {{ season.number }} - {{ season.year }}</li></a>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        Aucune saison trouvée pour ce programme.
+                    {% endif %}
+                    </p>
+                    <a href="{{ path('program_index') }}">Retour à la liste des programmes</a>
+                </div>
+            </div>
+        </div>    
     </div>
 </div>
 {% endblock %}

@@ -10,14 +10,15 @@
             {% for singleProgram in program %}
                 <div class="col-md-3 mb-4">
                     <div class="card category_card">
-                        <div class="card-body">
+                    <img class="card-img-top" src="{{ asset(singleProgram.poster) }}" alt="{{ singleProgram.title }} poster" style="height:400px">
+                        <div class="card-body body_category">
                             <h4 class="card-title" style="text-align:center">
                                 {{ singleProgram.id }} . {{ singleProgram.title }}
                             </h4>
                             <p>
-                                <h6>Synopsis : </h6>{{ singleProgram.synopsis }}
+                                <h6 style="text-align:center">Synopsis : </h6>{{ singleProgram.synopsis }}
                             </p>
-                            <a href="{{ path("program_show", { id: singleProgram.id }) }}">Voir la série</a>
+                            <a href="{{ path("program_show", { id: singleProgram.id }) }}" style="align-item:center">Voir la série</a>
                         </div>
                     </div>
                 </div>
