@@ -18,6 +18,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         un groupe d\'hommes et de femmes mené par l\'officier Rick Grimes tente de survivre. Ensemble, ils vont devoir 
         tant bien que mal faire face à ce nouveau monde.',
         'program' => ['title' => 'Walking Dead'],
+        'affiche' => 'build/images/WDseason1.jpg',
         ],
         [
         'number' => 2,
@@ -26,6 +27,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         de « rôdeurs » sur une autoroute, entraînant la disparition de Sophia Peletier, jusqu\'à leur fuite de la ferme des Greene 
         qui est envahie par les « rôdeurs ».',
         'program' => ['title' => 'Walking Dead'],
+        'affiche' => 'build/images/WDseason2.jpg',
         ],
         [
         'number' => 1,
@@ -33,6 +35,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         'description'=> 'En 1983, à Hawkins dans l\'Indiana, Will Byers disparaît de son domicile. Ses amis se lancent alors dans une 
         recherche semée d\'embûches pour le retrouver. Pendant leur quête de réponses, les garçons rencontrent une étrange jeune fille en fuite.',
         'program' => ['title' => 'Stranger Things'],
+        'affiche' => 'build/images/STseason1.jpg',
         ],
         [
         'number' => 2,
@@ -43,28 +46,23 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         reçoit des visions sombres et terrifiantes. De leur côté, le shérif Hopper et Joyce luttent ensemble contre cette nouvelle menace, 
         tandis que Nancy et Jonathan unissent leurs forces pour rétablir la vérité et obtenir justice pour Barbara.',
         'program' => ['title' => 'Stranger Things'],
+        'affiche' => 'build/images/STseason2.jpg',
         ],
     ];
 
     public function load(ObjectManager $manager)
     {
-        foreach (self::SEASONS as $index => $seasonData) {
+        foreach (self::SEASONS as $seasonData) {
             $season = new Season();
             $season->setNumber($seasonData['number']);
             $season->setYear($seasonData['year']);
             $season->setDescription($seasonData['description']);
+            $season->setProgram($this->getReference($seasonData['program']['title']));
+            $season->setAffiche($seasonData['affiche']);
 
-            $programTitle = $seasonData['program']['title'];
-            $program = $manager->getRepository(Program::class)->findOneBy(['title' => $programTitle]);
 
-            if (!$program) {
-                throw new \Exception('Program with title "'.$programTitle.'" not found.');
-            }
-
-            $season->setProgram($program);
-
+            $this->addReference('season_' . $seasonData['number'] . '_' . $seasonData['program']['title'], $season);
             $manager->persist($season);
-            $this->setReference('season_' . $index, $season);
         }
         $manager->flush();
     }
@@ -72,7 +70,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            CategoryFixtures::class,
+            ProgramFixtures::class,
         ];
     }
 }

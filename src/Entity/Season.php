@@ -32,6 +32,9 @@ class Season
     #[ORM\OneToMany(mappedBy: 'season', targetEntity: Episode::class)]
     private Collection $episodes;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $affiche = null;
+
     public function __construct()
     {
         $this->episodes = new ArrayCollection();
@@ -116,6 +119,18 @@ class Season
                 $episode->setSeason(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAffiche(): ?string
+    {
+        return $this->affiche;
+    }
+
+    public function setAffiche(?string $affiche): static
+    {
+        $this->affiche = $affiche;
 
         return $this;
     }

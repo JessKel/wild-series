@@ -11,7 +11,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
     public const PROGRAMS = [
         [
-            'title' => 'Walking dead',
+            'title' => 'Walking Dead',
             'synopsis' => 'Des zombies envahissent la terre',
             'category' => 'category_Action',
             'year' => 2010,
@@ -96,7 +96,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setYear($programData['year']);
             $program->setCountry($programData['country']);
             $program->setPoster($programData['poster']);
-            
+            $this->addReference($programData['title'], $program);
             $manager->persist($program);
         }
 

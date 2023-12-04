@@ -4,11 +4,38 @@
 
 {% block body %}
 <h1>{{ message }}</h1>
-<img src="{{ asset('build/images/berlin.jpg') }}" alt="affiche Berlin" height='300px' width='200px'>
-<img src="{{ asset('build/images/crown.webp') }}" alt="affiche Crown" height='300px' width='200px'>
-<img src="{{ asset('build/images/grisha.jpg') }}" alt="affiche Shadow and Bones" height='300px' width='200px'>
-<img src="{{ asset('build/images/squidgames.jpg') }}" alt="affiche squidgames" height='300px' width='200px'>
-<img src="{{ asset('build/images/strangerthings.jpeg') }}" alt="affiche strangerthings" height='300px' width='200px'>
-<img src="{{ asset('build/images/walkingdead.jpg') }}" alt="affiche walkingdeads" height='300px' width='200px'>
-<img src="{{ asset('build/images/wednesday.jpg') }}" alt="affiche wednesday" height='300px' width='200px'>
+<div class="container">
+    <div id="carouselExample" class="carousel slide" style="align-items:center">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ asset('build/images/casadepapelLarge.jpg') }}" width="800px" height="600px" class="d-block w-100"alt="affiche Berlin">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('build/images/shadowBoneLarge.webp') }}" width="800px" height="600px" class="d-block w-100" alt="affiche Crown">
+        </div>  
+        <div class="carousel-item">
+            <img src="{{ asset('build/images/Arcane--Social-media_fb.jpg') }}" width="800px" height="600px" class="d-block w-100" alt="affiche Shadow and Bones">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('build/images/house-of-the-dragonLarge.jpg') }}" width="800px" height="600px" class="d-block w-100" alt="affiche squidgames">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('build/images/anneauxdepouvoirLarge.jpg') }}" width="800px" height="600px" class="d-block w-100" alt="affiche strangerthings">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('build/images/discoveryLarge.webp') }}" width="800px" height="600px" class="d-block w-100" alt="affiche walkingdeads">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ asset('build/images/titansLarge.jpg') }}" width="800px" height="600px" class="d-block w-100" alt="affiche wednesday">
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
 {% endblock %}
