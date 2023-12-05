@@ -18,6 +18,8 @@ class ProgramType extends AbstractType
             ->add('title', TextType::class)
             ->add('synopsis', TextType::class)
             ->add('poster', TextType::class)
+            ->add('country', TextType::class)
+            ->add('year', TextType::class)
             ->add('category', EntityType::class, ['class' => Category::class, 'choice_label' => 'name'])
         ;
     }
