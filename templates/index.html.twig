@@ -7,26 +7,26 @@
 <div class="container">
     <div id="carouselExample" class="carousel slide" style="align-items:center">
     <div class="carousel-inner">
+        <div class="carousel-item">
+            <img src="{{ asset('build/images/Arcane--Social-media_fb.jpg') }}" style="border-radius:0.5rem" width="800px" height="600px" class="d-block w-100" alt="affiche Arcane">
+        </div>
         <div class="carousel-item active">
-            <img src="{{ asset('build/images/casadepapelLarge.jpg') }}" width="800px" height="600px" class="d-block w-100"alt="affiche Berlin">
+            <img src="{{ asset('build/images/casadepapelLarge.jpg') }}" style="border-radius:0.5rem" width="800px" height="600px" class="d-block w-100"alt="affiche Berlin">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('build/images/shadowBoneLarge.webp') }}" width="800px" height="600px" class="d-block w-100" alt="affiche Crown">
+            <img src="{{ asset('build/images/shadowBoneLarge.webp') }}" style="border-radius:0.5rem" width="800px" height="600px" class="d-block w-100" alt="affiche Crown">
         </div>  
         <div class="carousel-item">
-            <img src="{{ asset('build/images/Arcane--Social-media_fb.jpg') }}" width="800px" height="600px" class="d-block w-100" alt="affiche Shadow and Bones">
+            <img src="{{ asset('build/images/house-of-the-dragonLarge.jpg') }}" style="border-radius:0.5rem" width="800px" height="600px" class="d-block w-100" alt="affiche squidgames">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('build/images/house-of-the-dragonLarge.jpg') }}" width="800px" height="600px" class="d-block w-100" alt="affiche squidgames">
+            <img src="{{ asset('build/images/anneauxdepouvoirLarge.jpg') }}" style="border-radius:0.5rem" width="800px" height="600px" class="d-block w-100" alt="affiche strangerthings">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('build/images/anneauxdepouvoirLarge.jpg') }}" width="800px" height="600px" class="d-block w-100" alt="affiche strangerthings">
+            <img src="{{ asset('build/images/discoveryLarge.webp') }}" style="border-radius:0.5rem" width="800px" height="600px" class="d-block w-100" alt="affiche walkingdeads">
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('build/images/discoveryLarge.webp') }}" width="800px" height="600px" class="d-block w-100" alt="affiche walkingdeads">
-        </div>
-        <div class="carousel-item">
-            <img src="{{ asset('build/images/titansLarge.jpg') }}" width="800px" height="600px" class="d-block w-100" alt="affiche wednesday">
+            <img src="{{ asset('build/images/titansLarge.jpg') }}" style="border-radius:0.5rem" width="800px" height="600px" class="d-block w-100" alt="affiche wednesday">
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -36,6 +36,21 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </div>
+    <div>
+        <div class="row" style="margin-top:2rem">
+            <div class="col" >
+                <a role="button" class="btn btn-light" type="submit" href="{{ path('category_new') }}">Créer une catégorie</a>
+            </div>
+            <div class="col">
+                <a role="button" class="btn btn-light" type="submit" href="{{ path('program_new') }}">Créer une série</a>
+            </div>
+            <div class="col">
+                <a role="button" class="btn btn-light" type="submit" href="{{ path('app_season_new') }}">Créer une saison</a>
+            </div>
+            <div class="col">
+                <a role="button" class="btn btn-light" type="submit" href="{{ path('app_episode_new') }}">Créer un épisode</a>
+            </div>
     </div>
 </div>
 {% endblock %}
