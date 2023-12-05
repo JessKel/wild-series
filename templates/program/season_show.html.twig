@@ -23,14 +23,15 @@
                                 <h2>Épisodes</h2>
                                 <ul>
                                     {% for episode in season.episodes %}
-                                        <li>Épisode {{ episode.number }} - {{ episode.title }}</br>
-                                        Synopsis : {{ episode.synopsis }}</li>
+                                        <li>
+                                            <a href="{{ path('program_episode_show', {'program_id': program.id, 'season_id': season.id, 'episode_id': episode.id}) }}" style="align-item:center">Voir l'épisode</a>
+                                            Épisode {{ episode.number }} - {{ episode.title }}</li>
                                         <br>
                                     {% endfor %}
                                 </ul>
-                            <a href="{{ path('program_show', { 'id': program.id }) }}" style="align-item:center">Retour au programme</a>
                             </div>
                         </div>
+                        <a href="{{ path('program_show', { id: program.id }) }}">Retour à la série</a>
                 </div>
             </div>
     </div>

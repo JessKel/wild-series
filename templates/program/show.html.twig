@@ -19,11 +19,11 @@
                     Catégorie : {{ program.category.name }}</br></br>
                     <ul>
                         {% for season in program.seasons %}
-                            <li><a href="{{ path('program_season_show', { 'program': program.id, 'season': season.id }) }}">Saison {{ season.number }}</a></li>
+                            <li><a href="{{ path('program_season_show', { 'program_id': program.id, 'season_id': season.id }) }}">Saison {{ season.number }}</a></li>
                         {% endfor %}
                     </ul>
                     </p>
-                    <a href="{{ path('program_index') }}">Retour à la liste des programmes</a>
+                    <a href="{{ path('program_index') }}">Retour à la liste des séries</a>
                 </div>
             </div>
         </div>    
