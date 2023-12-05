@@ -15,7 +15,6 @@ class SeasonType extends AbstractType
             ->add('number')
             ->add('year')
             ->add('description')
-            ->add('affiche')
             ->add('program', null, ['choice_label' => 'title'])
         ;
     }
@@ -27,3 +26,4 @@ class SeasonType extends AbstractType
         ]);
     }
 }
+
