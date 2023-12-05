@@ -6,6 +6,7 @@ use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -88,6 +89,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
     
     public function load(ObjectManager $manager)
     {
+        $i=0;
         foreach (self::PROGRAMS as $programData) {
             $program = new Program();
             $program->setTitle($programData['title']);
@@ -96,10 +98,12 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setYear($programData['year']);
             $program->setCountry($programData['country']);
             $program->setPoster($programData['poster']);
-            $this->addReference($programData['title'], $program);
+            $this->addReference('program_' . $i, $program);
             $manager->persist($program);
-        }
 
+            $i++;
+        }
+    
         $manager->flush();
     }
 
@@ -110,4 +114,3 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         ];
     }
 }
-
