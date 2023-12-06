@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SeasonRepository::class)]
 class Season
@@ -17,13 +18,16 @@ class Season
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $number = null;
+    #[Assert\NotBlank]
+    private ?int $number;
 
     #[ORM\Column]
-    private ?int $year = null;
+    #[Assert\NotBlank]
+    private ?int $year;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    #[Assert\NotBlank]
+    private ?string $description;
 
     #[ORM\ManyToOne(inversedBy: 'seasons')]
     #[ORM\JoinColumn(nullable: false)]
