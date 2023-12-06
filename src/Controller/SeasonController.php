@@ -77,7 +77,7 @@ class SeasonController extends AbstractController
             $entityManager->remove($season);
             $entityManager->flush();
         }
-        $this->addFlash('danger', 'The episode has been deleted');
+        $this->addFlash('danger', 'The season has been deleted');
 
         return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
     }
