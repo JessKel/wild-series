@@ -178,10 +178,10 @@ class Program
     public function addActor(Actor $actor): static
     {
         if (!$this->actors->contains($actor)) {
+            $this->actors[] = $actor;
             $this->actors->add($actor);
             $actor->addProgram($this);
         }
-
         return $this;
     }
 
