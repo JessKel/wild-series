@@ -88,11 +88,11 @@ Class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/program/{programId}/season/{seasonId}/episode/{episodeId}', methods: ["GET"], requirements:['programID' => '\d+', 'seasonID' => '\d+', 'episodeID' => '\d+'], name: 'program_episode_show')]
+    #[Route('/program/{programId}/season/{seasonId}/episode/{episodeId}', methods: ["GET"], requirements:['programID' => '\d+', 'seasonID' => '\d+', 'episodeID' => '\d+'], name: 'episode_show')]
     public function showEpisode(
-        #[MapEntity(mapping: ['program_id' => 'id'])] Program $program, 
-        #[MapEntity(mapping: ['season_id' => 'id'])] Season $season,
-        #[MapEntity(mapping: ['episode_id' => 'id'])] Episode $episode
+        #[MapEntity(mapping: ['programId' => 'id'])] Program $program, 
+        #[MapEntity(mapping: ['seasonId' => 'id'])] Season $season,
+        #[MapEntity(mapping: ['episodeId' => 'id'])] Episode $episode
     ): Response {
         return $this->render('program/episode_show.html.twig', [
             'program' => $program,
