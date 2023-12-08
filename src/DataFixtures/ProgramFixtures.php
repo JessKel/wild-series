@@ -89,7 +89,6 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
     
     public function load(ObjectManager $manager)
     {
-        $i=0;
         foreach (self::PROGRAMS as $programData) {
             $program = new Program();
             $program->setTitle($programData['title']);
@@ -98,10 +97,8 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setYear($programData['year']);
             $program->setCountry($programData['country']);
             $program->setPoster($programData['poster']);
-            $this->addReference('program_' . $i, $program);
+            $this->addReference('program_' . $programData['title'], $program);
             $manager->persist($program);
-
-            $i++;
         }
     
         $manager->flush();
