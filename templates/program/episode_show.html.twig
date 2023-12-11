@@ -19,7 +19,7 @@
                                 <h6 style="text-align:center">Saison : </h6>{{ season.number }}</br>
                                 <h6 style="text-align:center">Résumé : </h6>{{ episode.synopsis }}</br>
                             </p>
-                            <a href="{{ path('program_show', { 'id': program.id }) }}" style="align-item:center">Retour au programme</a>
+                            <a href="{{ path('program_show', { programSlug: program.slug }) }}" style="align-item:center">Retour au programme</a>
                         </div>
                     </div>
                 </div>

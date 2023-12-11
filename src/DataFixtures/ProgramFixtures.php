@@ -6,10 +6,16 @@ use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
+    public function __construct(private SluggerInterface $slugger)
+    {
+
+    }
+
     public const PROGRAMS = [
         [
             'title' => 'Walking Dead',
@@ -97,6 +103,10 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setYear($programData['year']);
             $program->setCountry($programData['country']);
             $program->setPoster($programData['poster']);
+
+            $slug = $this->slugger->slug($programData['title']);
+            $program->setSlug($slug);
+
             $this->addReference('program_' . $programData['title'], $program);
             $manager->persist($program);
         }
