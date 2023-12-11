@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/season')]
 class SeasonController extends AbstractController
@@ -23,13 +25,15 @@ class SeasonController extends AbstractController
     }
 
     #[Route('/new', name: 'app_season_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $season = new Season();
         $form = $this->createForm(SeasonType::class, $season);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($season->getNumber());
+            $season->setSlug($slug);
             $entityManager->persist($season);
             $entityManager->flush();
 
@@ -44,21 +48,25 @@ class SeasonController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_season_show', methods: ['GET'])]
-    public function show(Season $season): Response
+    #[Route('/{slug}', name: 'app_season_show', methods: ['GET'])]
+    public function show(
+    #[MapEntity(mapping: ['slug' => 'slug'])] Season $season): Response
     {
         return $this->render('season/show.html.twig', [
             'season' => $season,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_season_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Season $season, EntityManagerInterface $entityManager): Response
+    #[Route('/{slug}/edit', name: 'app_season_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Season $season, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(SeasonType::class, $season);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($season->getNumber());
+            $season->setSlug($slug);
+            $entityManager->persist($season);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);

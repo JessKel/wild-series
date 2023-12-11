@@ -25,7 +25,7 @@
                 <td>{{ program.poster }}</td>
                 <td>{{ program.category.name }}</td>
                 <td>
-                    <a href="{{ path("program_show", { id: program.id }) }}">show</a>
+                    <a href="{{ path("program_show", { programSlug: program.slug }) }}">show</a>
                 </td>
             </tr>
         {% else %}

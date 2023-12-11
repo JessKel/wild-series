@@ -15,6 +15,7 @@ use App\Form\ProgramType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 #[Route('/program', name: 'program_')]
@@ -30,13 +31,15 @@ Class ProgramController extends AbstractController
 
     
     #[Route('/program/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(EntityManagerInterface $entityManager, Request $request, ProgramRepository $programRepository): Response
+    public function new(EntityManagerInterface $entityManager, Request $request, ProgramRepository $programRepository,SluggerInterface $slugger): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($program->getTitle());
+            $program->setSlug($slug);
             $entityManager->persist($program);
             $entityManager->flush();
             
@@ -48,20 +51,20 @@ Class ProgramController extends AbstractController
     }
 
 
-    #[Route('/show/{id}', methods: ['GET'],  name: 'show')]
+    #[Route('/show/{programSlug}', methods: ['GET'],  name: 'show')]
     public function show(
-        #[MapEntity(mapping: ['id' => 'id'])] Program $program
-        ): Response
+        #[MapEntity(mapping: ['programSlug' => 'slug'])] Program $program): Response
         {
         return $this->render('program/show.html.twig', [
             'program' => $program,
+            //'programDuration' => $programDuration->calculate($program)
         ]);
     }
 
-    #[Route('/program/{program_id}/seasons/{season_id}', name: 'season_show')]
+    #[Route('/program/{programSlug}/seasons/{seasonSlug}', name: 'season_show')]
     public function showSeason(
-        #[MapEntity(mapping: ['program_id' => 'id'])] Program $program, 
-        #[MapEntity(mapping: ['season_id' => 'id'])] Season $season
+        #[MapEntity(mapping: ['programSlug' => 'slug'])] Program $program, 
+        #[MapEntity(mapping: ['seasonSlug' => 'slug'])] Season $season
         ): Response {
         
         if (!$program) {
@@ -88,11 +91,11 @@ Class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/program/{programId}/season/{seasonId}/episode/{episodeId}', methods: ["GET"], requirements:['programID' => '\d+', 'seasonID' => '\d+', 'episodeID' => '\d+'], name: 'episode_show')]
+    #[Route('/program/{programSlug}/season/{seasonSlug}/episode/{episodeSlug}', methods: ["GET"], requirements:['programID' => '\d+', 'seasonID' => '\d+', 'episodeID' => '\d+'], name: 'episode_show')]
     public function showEpisode(
-        #[MapEntity(mapping: ['programId' => 'id'])] Program $program, 
-        #[MapEntity(mapping: ['seasonId' => 'id'])] Season $season,
-        #[MapEntity(mapping: ['episodeId' => 'id'])] Episode $episode
+        #[MapEntity(mapping: ['programSlug' => 'slug'])] Program $program, 
+        #[MapEntity(mapping: ['seasonSlug' => 'slug'])] Season $season,
+        #[MapEntity(mapping: ['episodeSlug' => 'slug'])] Episode $episode
     ): Response {
         return $this->render('program/episode_show.html.twig', [
             'program' => $program,
@@ -101,13 +104,16 @@ Class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Program $program, EntityManagerInterface $entityManager): Response
+    #[Route('/{slug}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Program $program, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($program->getTitle());
+            $program->setSlug($slug);
+            $entityManager->persist($program);
             $entityManager->flush();
 
             return $this->redirectToRoute('program_index', [], Response::HTTP_SEE_OTHER);

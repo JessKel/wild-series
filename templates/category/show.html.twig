@@ -18,7 +18,7 @@
                             <p>
                                 <h6 style="text-align:center">Synopsis : </h6>{{ singleProgram.synopsis }}
                             </p>
-                            <a href="{{ path("program_show", { id: singleProgram.id }) }}" style="align-item:center">Voir la série</a>
+                            <a href="{{ path("program_show", { programSlug: singleProgram.slug }) }}" style="align-item:center">Voir la série</a>
                             </br>
                             <a href="{{ path('category_index') }}">Retour à la liste des catégories</a>
                         </div>
