@@ -3,6 +3,8 @@
 {% block title %}Actor{% endblock %}
 
 {% block body %}
+<div class="container">
+
     <h1>Actor</h1>
 
     <table class="table">
@@ -15,12 +17,32 @@
                 <th>Name</th>
                 <td>{{ actor.name }}</td>
             </tr>
+            <tr>
+                <th>Picture</th>
+                <td><img src="{{ vich_uploader_asset(actor) }}" alt="{{ actor.name }}"></td>
+            </tr>
+            <tr>
+				<th>UpdatedAt</th>
+				<td>{{ actor.updatedAt ? actor.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
         </tbody>
     </table>
 
-    <a href="{{ path('actor_index') }}">back to list</a>
+    {% for program in actor.programs %}
+		<li>
+			<a href="{{ path("program_show", { programSlug: program.slug }) }}">
+				{{ program.title }}</a>
+		</li>
+	{% else %}
+		<li>Aucun programme n'est enregistré pour cet acteur</li>
+	{% endfor %}
 
-    <a href="{{ path('actor_edit', {'id': actor.id}) }}">edit</a>
+    <a class="btn btn-light" href="{{ path('actor_index') }}">back to list</a>
+
+    <a class="btn btn-light" href="{{ path('actor_edit', {'id': actor.id}) }}">edit</a>
+
+    <a class="btn btn-light" href="{{ path('program_index') }}">Retour à la liste des programmes</a>
 
     {{ include('actor/_delete_form.html.twig') }}
+</div>
 {% endblock %}

@@ -3,14 +3,16 @@
 {% block title %}Actor index{% endblock %}
 
 {% block body %}
-    <h1>Actor index</h1>
-
+<div class="container">
+<h1>Actor index</h1>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>actions</th>
+                <th>Picture</th>
+                <th>UpdatedAt</th>
+                <th>Show/Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -18,9 +20,11 @@
             <tr>
                 <td>{{ actor.id }}</td>
                 <td>{{ actor.name }}</td>
+                <td>{{ actor.picture }}</td>
+                <td>{{ actor.updatedAt ? actor.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('actor_show', {'id': actor.id}) }}">show</a>
-                    <a href="{{ path('actor_edit', {'id': actor.id}) }}">edit</a>
+                    <a href="{{ path('actor_show', {'id': actor.id}) }}">Show</a>
+                    <a href="{{ path('actor_edit', {'id': actor.id}) }}">Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +35,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('actor_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('actor_new') }}">Create new</a>
+</div>
 {% endblock %}
