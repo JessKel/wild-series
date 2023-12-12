@@ -16,6 +16,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 
 #[Route('/program', name: 'program_')]
@@ -31,7 +33,7 @@ Class ProgramController extends AbstractController
 
     
     #[Route('/program/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(EntityManagerInterface $entityManager, Request $request, ProgramRepository $programRepository,SluggerInterface $slugger): Response
+    public function new(EntityManagerInterface $entityManager, Request $request, ProgramRepository $programRepository,MailerInterface $mailer, SluggerInterface $slugger): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
@@ -44,6 +46,14 @@ Class ProgramController extends AbstractController
             $entityManager->flush();
             
             $this->addFlash('success', 'The new program has been created');
+            
+            $email = (new Email())
+                ->from($this->getParameter('mailer_from'))
+                ->to('jessica.keller68@gmail.com')
+                ->subject('Une nouvelle série vient d\'être publiée !')
+                ->html($this->renderView('Program/newProgramEmail.html.twig', ['program' => $program]));
+
+            $mailer->send($email);
 
             return $this->redirectToRoute('program_index');
         }

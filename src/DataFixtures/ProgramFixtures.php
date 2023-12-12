@@ -91,6 +91,69 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             'country'=> 'US',
             'poster' => 'build/images/wednesday.jpg',
         ],
+        [
+            'title' => 'Les Thunderman',
+            'synopsis' => 'Les jumeaux Phoebe et Max, ainsi que toute leur famille les Thunderman, ont des super pouvoirs. Ils ont emménagé 
+            dans la ville d\'Hiddenville, en Floride, pour vivre une vie normale et garder secret leurs capacités.',
+            'category' => 'category_Jeunesse',
+            'year' => 2021,
+            'country'=> 'US',
+            'poster' => 'build/images/thunderman.jpeg',
+        ],
+        [
+            'title' => 'The Last Kingdom',
+            'synopsis' => 'Au IXème siècle, l\'Angleterre, séparée en de nombreux royaumes, est envahie par les Vikings menés par le Roi Alfred. 
+            Alors que le royaume de Wessex est le seul à résister, Uhtred doit choisir entre son pays natal et le peuple qui l\'a élevé.',
+            'category' => 'category_Aventure',
+            'year' => 2015,
+            'country'=> 'GB',
+            'poster' => 'build/images/lastKingdom.jpeg',
+        ],
+        [
+            'title' => 'Arcane',
+            'synopsis' => 'Au milieu du conflit entre les villes jumelles de Piltover et Zaun, deux soeurs se battent dans les camps opposés 
+            d\'une guerre entre technologies magiques et convictions incompatibles.',
+            'category' => 'category_Animation',
+            'year' => 2021,
+            'country'=> 'US-FR',
+            'poster' => 'build/images/arcane.webp',
+        ],
+        [
+            'title' => 'Secrets de champions',
+            'synopsis' => 'Sept athlètes emblématiques lèvent le voile sur les moments déterminants de leur carrière où ils ont touché la grandeur. 
+            Un nouvel éclairage sur des légendes du sport bien connues.',
+            'category' => 'category_Sport',
+            'year' => 2020,
+            'country'=> 'US',
+            'poster' => 'build/images/secretchampions.jpeg',
+        ],
+        [
+            'title' => 'Game of Thrones',
+            'synopsis' => 'Neuf familles nobles rivalisent pour le contrôle du Trône de Fer dans les sept royaumes de Westeros. Pendant ce temps, 
+            des anciennes créatures mythiques oubliées reviennent pour faire des ravages.',
+            'category' => 'category_Fantasy',
+            'year' => 2011,
+            'country'=> 'US',
+            'poster' => 'build/images/got.jpg',
+        ],
+        [
+            'title' => 'House of the Dragon',
+            'synopsis' => 'L\'histoire de la guerre civile des Targaryen, 200 ans avant les événements du "Trône de fer". Les partisans d\'Aegon 
+            s\'opposent à ceux de sa demi-soeur Rhaenyra pour le trône de Viserys I, leur défunt père.',
+            'category' => 'category_Fantasy',
+            'year' => 2022,
+            'country'=> 'US',
+            'poster' => 'build/images/houseOfDragon.jpeg',
+        ],
+        [
+            'title' => 'Le Seigneur des Anneaux : Les Anneaux de Pouvoir',
+            'synopsis' => 'En passant par les profondeurs des Monts Brumeux et le royaume de Númenor, les héros affrontent la réapparition tant 
+            redoutée du mal en Terre du Milieu et créent des héritages qui vivront longtemps après qu\'ils soient partis.',
+            'category' => 'category_Fantasy',
+            'year' => 2022,
+            'country'=> 'US',
+            'poster' => 'build/images/lesAnneauxPouvoir.jpeg',
+        ],
     ];
     
     public function load(ObjectManager $manager)
