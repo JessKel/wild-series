@@ -6,8 +6,6 @@ use App\Entity\Program;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use App\Repository\ProgramRepository;
-
 use Faker\Factory;
 
 class ActorFixtures extends Fixture implements DependentFixtureInterface
@@ -16,19 +14,16 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {   
         $faker = Factory::create();
-        $programRepository = $manager->getRepository(Program::class);
-        $programs = $programRepository->findAll();
 
-        for ($actorNumber= 1; $actorNumber <= 10; $actorNumber++) {
-                $actor = new Actor();
-                $actor->setName($faker->name);
-                for ($i = 0; $i < 3; $i++) {
-                    $programReference = 'program_'.$faker->randomElement($programs)->getTitle();
-                    $actor->addProgram($this->getReference($programReference));
-                }
-                $manager->persist($actor);
+        for ($i = 0; $i < 10; $i++) {
+            $actor = new Actor();
+            $actor->setName($faker->name);
+            $manager->persist($actor);
+            $this->addReference('actor_' . $i, $actor);
+            for ($j = 0; $j < 3; $j++) {
+                $actor->addProgram($this->getReference('Program_' . rand(0, 2)));
             }
-
+        }
         $manager->flush();
     }
 

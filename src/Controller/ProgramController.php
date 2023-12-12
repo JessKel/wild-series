@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use App\Service\ProgramDuration;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -63,11 +64,11 @@ Class ProgramController extends AbstractController
 
     #[Route('/show/{programSlug}', methods: ['GET'],  name: 'show')]
     public function show(
-        #[MapEntity(mapping: ['programSlug' => 'slug'])] Program $program): Response
+        #[MapEntity(mapping: ['programSlug' => 'slug'])] Program $program, ProgramDuration $programDuration): Response
         {
         return $this->render('program/show.html.twig', [
             'program' => $program,
-            //'programDuration' => $programDuration->calculate($program)
+            'programDuration' => $programDuration->calculate($program)
         ]);
     }
 
