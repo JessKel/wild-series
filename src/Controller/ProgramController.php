@@ -33,7 +33,7 @@ Class ProgramController extends AbstractController
     }  
 
     
-    #[Route('/program/new', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(EntityManagerInterface $entityManager, Request $request, ProgramRepository $programRepository,MailerInterface $mailer, SluggerInterface $slugger): Response
     {
         $program = new Program();
